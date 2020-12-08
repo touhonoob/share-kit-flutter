@@ -16,7 +16,7 @@ class RequestQRCode extends StatelessWidget {
   final QrCode _qr;
 
   RequestQRCode({@required this.requestData, QROptions qrOptions})
-      : this.qrOptions = qrOptions ?? QROptions(),
+      : qrOptions = qrOptions ?? QROptions(),
         _qr = QrCode.fromData(
             data: jsonEncode(requestData.toJson()), errorCorrectLevel: (qrOptions ?? QROptions()).ecLevel) {
     _qr.make();
@@ -93,15 +93,11 @@ class _QrPainter extends CustomPainter {
     ..strokeCap = StrokeCap.round
     ..strokeJoin = StrokeJoin.round
     ..strokeWidth = 1;
-  bool _hasError = false;
 
   int get version => qr.typeNumber;
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (_hasError) {
-      return;
-    }
     if (size.shortestSide == 0) {
       print(
           "[QR] WARN: width or height is zero. You should set a 'size' value or nest this painter in a Widget that defines a non-zero size");

@@ -61,10 +61,10 @@ class QROptions {
       this.logoWidth,
       this.logoHeight,
       this.logoOpacity})
-      : this.ecLevel = ecLevel ?? QrErrorCorrectLevel.L,
-        this.size = size ?? 128.0,
-        this.bgColor = bgColor ?? Color(0xfffffff),
-        this.fgColor = fgColor ?? Color(0xff6067f1),
-        this.hideLogo = hideLogo ?? false,
-        this.padding = padding ?? 0;
+      : ecLevel = ecLevel ?? QrErrorCorrectLevel.L,
+        size = size ?? 128.0,
+        bgColor = bgColor ?? Color(0xfffffff),
+        fgColor = fgColor ?? Color(0xff6067f1),
+        hideLogo = hideLogo ?? false,
+        padding = padding ?? 0;
 }

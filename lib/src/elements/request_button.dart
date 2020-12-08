@@ -25,12 +25,12 @@ class RequestButton extends StatelessWidget {
       this.requestButtonOnTapCallback,
       RequestButtonUrlLauncher urlLauncher,
       Key key})
-      : this.urlLauncher = urlLauncher ?? RequestButtonUrlLauncher(),
+      : urlLauncher = urlLauncher ?? RequestButtonUrlLauncher(),
         super(key: key) {
     Uri requestDataUri = Uri.parse(requestData.url);
     Map<String, String> queryParameters = Map.from(requestDataUri.queryParameters);
     queryParameters.putIfAbsent("share-kit-from", () => "button");
-    this.requestData.url = requestDataUri.replace(queryParameters: queryParameters).toString();
+    requestData.url = requestDataUri.replace(queryParameters: queryParameters).toString();
   }
 
   @override
@@ -41,8 +41,8 @@ class RequestButton extends StatelessWidget {
           if (requestButtonOnTapCallback != null) requestButtonOnTapCallback();
         },
         child: Container(
-            height: this.height,
-            width: this.width,
+            height: height,
+            width: width,
             child: FractionallySizedBox(
               widthFactor: 1.0,
               heightFactor: 1.0,

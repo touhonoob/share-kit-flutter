@@ -34,7 +34,7 @@ String orderedStringify(dynamic obj) {
 /// after the leaves are sorted by hash and mapped into hash Buffers.
 MerkleTree getMerkleTreeFromLeaves(List<String> leaves) {
   leaves.sort();
-  return new MerkleTree(
+  return MerkleTree(
     leaves: leaves.map((x) => toBuffer(x)).toList(),
     hashAlgo: (x) => keccak256(x),
   );
@@ -80,10 +80,10 @@ ISignedClaimNode getSignedClaimNode(
     IClaimNode claimNode, String globalRevocationLink, Uint8List privKey, String issuanceDate, String expirationDate) {
   // validateDates
   if (!validateDateTime(issuanceDate)) {
-    throw new ArgumentError('Invalid issuance date');
+    throw ArgumentError('Invalid issuance date');
   }
   if (!validateDateTime(expirationDate)) {
-    throw new ArgumentError('Invalid expiration date');
+    throw ArgumentError('Invalid expiration date');
   }
   var issuedClaimNode = IIssuedClaimNode(
     data: claimNode.data,
@@ -245,7 +245,7 @@ IBloomMerkleTreeComponents getSignedMerkleTreeComponents(
 IBloomBatchMerkleTreeComponents getSignedBatchMerkleTreeComponents(IBloomMerkleTreeComponents components,
     String contractAddress, String subjectSig, String subject, String requestNonce, Uint8List privKey) {
   if (!validateSignedAgreement(subjectSig, contractAddress, components.layer2Hash, requestNonce, subject)) {
-    throw new ArgumentError('Invalid subject sig');
+    throw ArgumentError('Invalid subject sig');
   }
   var batchAttesterSig = signHash(
       toBuffer(hashMessage(orderedStringify({
