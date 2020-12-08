@@ -93,7 +93,7 @@ class RequestButton extends StatelessWidget {
   @protected
   void onTap() async {
     var url =
-        'https://bloom.co/download?request=${base64.encode(utf8.encode(jsonEncode(requestData.toJson())))}&callback_url=${Uri.encodeComponent(buttonCallbackUrl)}';
+        'https://bloom.co/download?request=${base64.encode(utf8.encode(jsonEncode(requestData.toJson())))}&callback-url=${Uri.encodeComponent(buttonCallbackUrl)}';
     await urlLauncher.launchUrl(url);
   }
 }
@@ -101,7 +101,7 @@ class RequestButton extends StatelessWidget {
 class RequestButtonUrlLauncher {
   void launchUrl(String url) async {
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(url, forceSafariVC: false, forceWebView: false);
     } else {
       throw 'Could not launch $url';
     }
